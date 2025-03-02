@@ -1,0 +1,14 @@
+[Unit]
+Description=Opensearch Production Deployment
+
+[Container]
+ContainerName=opensearch-node2
+Environment=cluster.name=opensearch-cluster node.name=opensearch-node2 discovery.seed_hosts=opensearch-node1,opensearch-node2 cluster.initial_cluster_manager_nodes=opensearch-node1,opensearch-node2 bootstrap.memory_lock=true "OPENSEARCH_JAVA_OPTS=-Xms512m -Xmx512m" OPENSEARCH_INITIAL_ADMIN_PASSWORD=Anubhav@321
+Image=opensearchproject/opensearch:latest
+Network=opensearch-net
+Ulimit=memlock=68719476735:68719476735
+Ulimit=nofile=65536:65536
+Volume=opensearch-data2:/usr/share/opensearch/data
+
+[Install]
+WantedBy=default.target

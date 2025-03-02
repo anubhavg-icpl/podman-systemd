@@ -1,0 +1,7 @@
+[Unit]
+Description=Opensearch Production Deployment
+
+[Network]
+
+[Install]
+WantedBy=default.target
