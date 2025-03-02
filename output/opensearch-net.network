@@ -1,7 +1,9 @@
 [Unit]
-Description=Opensearch Production Deployment
+Description=Opensearch Network
 
 [Network]
+Driver=bridge
+NetworkName=opensearch-net
 
 [Install]
 WantedBy=default.target

@@ -1,13 +1,18 @@
 [Unit]
-Description=Opensearch Production Deployment
+Description=Opensearch Dashboards Production Deployment
+After=opensearch-net.network
+
+[Service]
+Restart=always
+TimeoutStartSec=300
+
+[Install]
+WantedBy=default.target
 
 [Container]
 ContainerName=opensearch-dashboards
 Environment=OPENSEARCH_HOSTS=["https://opensearch-node1:9200","https://opensearch-node2:9200"]
-ExposeHostPort=5601
 Image=opensearchproject/opensearch-dashboards:latest
 Network=opensearch-net
 PublishPort=5601:5601
-
-[Install]
-WantedBy=default.target
+ExposeHostPort=5601

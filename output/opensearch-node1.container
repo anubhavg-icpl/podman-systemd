@@ -1,5 +1,13 @@
 [Unit]
-Description=Opensearch Production Deployment
+Description=Opensearch Production Deployment - Node 1
+After=opensearch-net.network
+
+[Service]
+Restart=always
+TimeoutStartSec=300
+
+[Install]
+WantedBy=default.target
 
 [Container]
 ContainerName=opensearch-node1
@@ -11,6 +19,4 @@ PublishPort=9600:9600
 Ulimit=memlock=68719476735:68719476735
 Ulimit=nofile=65536:65536
 Volume=opensearch-data1:/usr/share/opensearch/data
-
-[Install]
-WantedBy=default.target
+Volume=/opt/opensearch/config/opensearch.yml:/usr/share/opensearch/config/opensearch.yml:ro
